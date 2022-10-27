@@ -4,8 +4,7 @@ from .serializers import UserSerializer
 from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
-from django.http import HttpResponse
+
 # Create your views here.
 @csrf_exempt
 def index(request):
