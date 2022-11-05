@@ -13,14 +13,29 @@ def index():
 def calculate(request):
     if request.method == "POST":
         new_data = loads(request.body.decode())
-        if "add" in new_data["operation_type"] or "addition" in new_data["operation_type"]:
-            result = new_data["x"] + new_data["y"]
-        elif new_data["operation_type"] == "subtraction" or "subtract" in new_data["operation_type"]:
-            result = new_data["x"] - new_data["y"]
-        else:
-            result = new_data['x'] * new_data["y"]   
+        x = ["add","addition","sum","plus"]
+        for a in x:
+            if a in new_data["operation_type"]:
+                result = new_data["x"] + new_data["y"]
+                a = "addition"
+                num = a
+
+        x = ["minus","subtraction","subtract","remove"]
+        for a in x:
+            if a in new_data["operation_type"]:
+                result = new_data["x"] - new_data["y"]
+                a = "subtraction"
+                num = a
+
+        x = ["multiply","multiplication","product","times"]
+        for a in x:
+            if a in new_data["operation_type"]:    
+                result = new_data['x'] * new_data["y"]  
+                a = "multiplication"
+                num = a 
+
         return JsonResponse({
-            'slackusername':'Chidera Onumajuru',
-            'operation_type':new_data["operation_type"],
-            'result':result},safe=False)
+        'slackUsername':'Chidera Onumajuru',
+        'operation_type':num,
+        'result':result},safe=False)
 
